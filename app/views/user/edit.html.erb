@@ -1,0 +1,29 @@
+<div id="edit-container">
+  <div class="section-header">
+    <h2 id="edit-header">Edit Profile</h2>
+  </div>
+  <div class="section-content">
+    <%if session[:error_msg] != nil%>
+    <div class="edit_error"><%=session[:error_msg]%></div>
+    <%end%>
+    <form action="/users/update/<%=@user.id%>">
+      <div class="form-input">
+        <label>Name</label>
+        <input type="text" name="username" value="<%=@user.username%>">
+      </div>
+      <div class="form-input">
+        <label>Email</label>
+        <input type="text" name="email" value="<%=@user.email%>">
+      </div>
+      <div class="form-input">
+        <label>Password</label>
+        <input type="password" name="password">
+      </div>
+      <div class="form-input">
+        <label>Confirm Password</label>
+        <input type="password" name="password_confirmation">
+      </div>
+      <input type="submit" class="button-1" value="Update">
+    </form>
+  </div>
+</div>

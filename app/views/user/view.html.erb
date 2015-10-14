@@ -1,0 +1,43 @@
+<div id="user-view-container">
+  <div class="section-header">
+    <h1 id="user-view-header"><%=@user.username%></h2>
+  </div>
+  <div class="section-content">
+    <p><%=@user.email%></p>
+    <%if @user.usertype == 3%>
+      <p>Admin</p>
+    <%elsif @user.usertype == 2%>
+      <p>Teacher</p>
+    <%else%>
+      <p>Student</p>
+    <%end%>
+    <%if @user.id == session[:user_id]%>
+      <%UpgradeRequest.where(admin_id: session[:user_id]).each do |u|%>
+        <form action="/upreq/accept">
+          <p>Upgrade <%=User.find_by(id: u.user_id).username%> <small>(<%=User.find_by(id: u.user_id).email%>)</small> to <%if u.upgrade_type == 2%>Teacher<%else%>Admin<%end%></p>
+          <input type="hidden" name="upreq_id" value="<%=u.id%>">
+          <input type="submit" class="button-1" value="Accept Upgrade">
+        </form>
+      <%end%>
+    <%end%>
+    <%if @visiting_user != nil%>
+      <%if @user.id != session[:user_id] and @user.usertype == 3 and @visiting_user.usertype != 3 and UpgradeRequest.find_by(user_id: @visiting_user.id) == nil%>
+        <%if @visiting_user.usertype != 2%>
+          <form action="/upreq/create">
+            <input type="hidden" name="admin_id" value="<%=@user.id%>">
+            <input type="hidden" name="upgrade_type" value="2">
+            <input type="submit" class="button-1" value="Request Upgrade to Teacher">
+          </form>
+        <%end%>
+        <form action="/upreq/create">
+          <input type="hidden" name="admin_id" value="<%=@user.id%>">
+          <input type="hidden" name="upgrade_type" value="3">
+          <input type="submit" class="button-1" value="Request Upgrade to Admin">
+        </form>
+      <%end%>
+    <%end%>
+    <%if session[:user_id].to_s == @user.id.to_s%>
+      <a href="/users/edit/<%=@user.id%>">Edit</a>
+    <%end%>
+  </div>
+</div>

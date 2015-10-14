@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<%if session[:user_id] != nil%>
+  <div id="signed_in_header">
+    <p>Hello <%=User.find_by(id: session[:user_id]).username%></p>
+    <p><a href="/users/logout">Logout</a></p>
+  </div>  
+<%else%>
+  <div id="not_signer_in_header">
+    <p><a href="/users/login_page">Login</a></p>
+    <p><a href="/users/signup">Signup</a></p>
+  </div>
+<%end%>
+
 <%= yield %>
 
 </body>
