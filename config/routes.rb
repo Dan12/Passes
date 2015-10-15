@@ -19,10 +19,5 @@ Rails.application.routes.draw do
   #destroy
   #post request, check that request came from users edit page
   
-  #upgrade request
-  #create
-  get '/upreq/create' => 'upgraderequest#create_upreq'
   
-  #accept
-  get '/upreq/accept' => 'upgraderequest#accept_upreq'
 end

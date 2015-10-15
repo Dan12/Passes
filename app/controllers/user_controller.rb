@@ -98,8 +98,12 @@ class UserController < ApplicationController
     if params[:id].to_s == session[:user_id].to_s
       @user = User.find_by(id: session[:user_id])
       if @user != nil
-        @user.username = params[:username]
-        @user.email = params[:email]
+        if params[:username] != nil and params[:username] != ""
+          @user.username = params[:username]
+        end
+        if params[:email] != nil and params[:email] != ""
+          @user.email = params[:email]
+        end
         @user.password = params[:password]
         @user.password_confirmation = params[:password_confirmation]
         

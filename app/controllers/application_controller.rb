@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
-  before_filter :login_required, :only => [:edit, :update, :destroy, :create_upreq, :accept_upreq]
+  before_filter :login_required, :only => [:edit, :update, :destroy]
   before_filter :clear_error, :except => [:login_page, :signup_page, :edit_page]
   
   def login_required

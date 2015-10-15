@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151014133006) do
-
-  create_table "upgrade_requests", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "admin_id"
-    t.integer  "upgrade_type"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
+ActiveRecord::Schema.define(version: 20151015023904) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
