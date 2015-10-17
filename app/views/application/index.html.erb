@@ -1,6 +1,12 @@
-<h1>Home Page</h1>
-<%@users.each do |u|%>
-  <div class="user-view-list-item">
-    <h3><a href="/users/view/<%=u.id%>"><%=u.username%></a> <span><%=u.email%></span></h3>
+<div id="home-page-container">
+  <div class="section-header">
+    <h2 id="home=page-header">Home Page</h2>
   </div>
-<%end%>
+  <div class="section-content">
+    <%@users.each do |u|%>
+      <div class="user-view-list-item">
+        <h3><a href="/users/view/<%=u.id%>"><%=u.username%></a> <span><%=u.email%></span></h3>
+      </div>
+    <%end%>
+  </div>
+</div>

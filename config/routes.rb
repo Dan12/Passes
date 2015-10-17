@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get '/users/edit/:id' => 'user#edit_page'
   get '/users/update/:id' => 'user#update'
   
+  get '/users/change_usertype' => 'user#changeStatus'
+  
   #destroy
   #post request, check that request came from users edit page
   

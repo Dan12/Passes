@@ -11,6 +11,23 @@
     <%else%>
       <p>Student</p>
     <%end%>
+    <%if @visiting_user.id != @user.id and @visiting_user.usertype == 3 and @user.usertype != 3%>
+      <form action="/users/change_usertype">
+        <input type="hidden" name="user_id" value="<%=@user.id%>">
+        <%if @user.usertype == 1%>
+          <input type="hidden" name="change_type" value="2">
+          <input type="submit" value="Make Teacher">
+        <%else%>
+          <input type="hidden" name="change_type" value="1">
+          <input type="submit" value="Make Student">  
+        <%end%>
+      </form>
+      <form action="/users/change_usertype">
+        <input type="hidden" name="user_id" value="<%=@user.id%>">
+        <input type="hidden" name="change_type" value="3">
+        <input type="submit" value="Make Admin">
+      </form>
+    <%end%>
     <%if session[:user_id].to_s == @user.id.to_s%>
       <a href="/users/edit/<%=@user.id%>">Edit</a>
     <%end%>

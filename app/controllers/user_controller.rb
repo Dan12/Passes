@@ -126,8 +126,22 @@ class UserController < ApplicationController
     end
   end
   
+  #change
+  def changeStatus
+    @user = User.find_by(id: session[:user_id])
+    if @user.usertype == 3
+      @change_user = User.find_by(id: params[:user_id])
+      if @change_user != nil and @change_user.usertype != 3
+        @change_user.usertype = params[:change_type].to_i
+        @change_user.save
+      end
+    end
+    redirect_to "/users/view/#{params[:user_id]}"
+  end
+  
   #destroy
   def destroy
-    
+    reset_session
+    redirect_to '/'
   end
 end
